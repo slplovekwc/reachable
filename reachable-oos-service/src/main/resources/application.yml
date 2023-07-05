@@ -1,0 +1,16 @@
+#server:
+#  port: 7070
+#spring:
+#  cloud:
+#    # 配置阿里云 OSS 相关参数
+#    alicloud:
+#      access-key: xxxxxxxxxxxxxxxx
+#      secret-key: xxxxxxxxxxxxxxxx
+#      oss:
+#        endpoint: oss-cn-chengdu.aliyuncs.com
+#        bucket: xxxxx
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#  application:
+#    name: reachable-oos-service

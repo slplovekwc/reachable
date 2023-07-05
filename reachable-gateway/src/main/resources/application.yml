@@ -1,0 +1,27 @@
+#server:
+#  port: 5050 #gateway监听端口
+#
+#spring:
+#  cloud:
+#    #配置网关
+#    gateway:
+#      routes: #配置路由,可以有多个路由
+#        - id: reachable_service_route # 路由id, 由程序员指定,保证唯一
+#          # lb ： 负载均衡 将请求负载均衡到reachable-backend微服务集群
+#          uri: lb://reachable-backend
+#          predicates:
+#            - Path=/api/service/**
+#            # 也就是通过路径重写 最终的url 就是 http://localhost:5050/api/service/user/test =>  http://localhost:8080/user/test
+#          filters:
+#            - RewritePath=/api/service/(?<segment>.*), /$\{segment}
+#        - id: oss_service_route
+#          uri: lb://reachable-oos-service
+#          predicates:
+#            - Path=/api/oosService/**
+#          filters:
+#            - RewritePath=/api/oosService/(?<segment>.*), /$\{segment}
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848 #配置nacos地址
+#  application:
+#    name: reachable-gateway

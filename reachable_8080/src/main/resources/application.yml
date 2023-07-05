@@ -1,0 +1,57 @@
+spring:
+  rabbitmq:
+    host: 192.168.56.100
+    port: 5672
+    username: root
+    password: 123456
+    template:
+      exchange: mq.user.exchange #交换机
+      retry:
+        initial-interval: 1000
+        max-interval: 10000
+        multiplier: 2
+        enabled: true
+  profiles:
+    active: dev
+  application:
+    name: reachable-backend
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.100:3306/reachable?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  # session 失效时间（分钟）
+  session:
+    timeout: 86400
+    store-type: redis
+    # 配置了 Spring MVC 的路径匹配策略为 ANT_PATH_MATCHER。具体来说，ANT_PATH_MATCHER 是一种基于 Ant 标准的路径匹配方式，可以进行通配符的匹配，比如使用 /*/path 可以匹配 /abc/path，/xyz/path 等多个路径。这种方式非常常用，可以灵活地匹配不同的路径。在 Spring Boot 的 Web 开发中，我们可以通过配置文件来指定路径匹配策略，这样就可以更好地满足业务需求。
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  # redis 配置
+  redis:
+    port: 6379
+    host: 192.168.56.100
+    database: 1
+  devtools:
+    livereload:
+      enabled: true
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        domain: localhost
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+nacos:
+  discovery:
+    server-addr: 127.0.0.1:8848;

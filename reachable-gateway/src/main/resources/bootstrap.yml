@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: reachable-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        namespace: cb2534c8-f82a-4992-b63d-6ed0d04fa83f
+        group: dev
+        file-extension: yml
