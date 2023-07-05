@@ -1,5 +1,5 @@
 create
-database if not exists yupao;
+database if not exists `reachable`;
 
 use
 yupao;
