@@ -2,7 +2,7 @@ create
 database if not exists `reachable`;
 
 use
-yupao;
+reachable;
 
 -- 用户表
 create table user
